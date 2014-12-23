@@ -1,0 +1,84 @@
+/*constants*/
+/*bootstrap overrides*/
+/* line 17, ../sass/global.scss */
+.nav-tabs > li > a {
+  border-radius: 0;
+  border-top: 1px solid #fff;
+}
+
+/* line 21, ../sass/global.scss */
+.nav-tabs > li.active > a {
+  border-top: 1px solid #fff;
+}
+
+/* line 24, ../sass/global.scss */
+.nav-tabs > li:first-child > a,
+.nav-tabs > li.active:first-child > a {
+  border-left: 1px solid #fff;
+  border-top: 1px solid #fff;
+}
+
+/* line 30, ../sass/global.scss */
+.nav-tabs > li:last-child > a,
+.nav-tabs > li.active:last-child > a {
+  border-right: 1px solid #fff;
+}
+
+/* line 34, ../sass/global.scss */
+.nav-tabs > li:last-child {
+  float: right;
+}
+
+/**/
+/* line 40, ../sass/global.scss */
+.breather {
+  padding: 30px;
+}
+
+/* line 44, ../sass/global.scss */
+.message {
+  padding: 10px;
+}
+
+/* line 48, ../sass/global.scss */
+.left-column {
+  border-right: 1px solid #ddd;
+  padding: 0;
+}
+
+/* line 52, ../sass/global.scss */
+.right-column {
+  padding: 0;
+}
+
+/* line 56, ../sass/global.scss */
+.glyphicon.success {
+  color: #5cb85c;
+}
+
+/* line 59, ../sass/global.scss */
+.glyphicon.danger {
+  color: #d9534f;
+}
+
+/* line 62, ../sass/global.scss */
+.block.unresolved {
+  font-size: 16px;
+  padding: 20px;
+  border-bottom: 1px solid #ddd;
+  overflow: hidden;
+}
+/* line 68, ../sass/global.scss */
+.block.unresolved small {
+  font-size: 70%;
+  color: #777777;
+}
+/* line 73, ../sass/global.scss */
+.block.unresolved .delete:hover .glyphicon-trash {
+  color: #555555;
+}
+/* line 77, ../sass/global.scss */
+.block.unresolved .glyphicon-trash {
+  color: #eeeeee;
+  float: right;
+}
