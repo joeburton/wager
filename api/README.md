@@ -1,19 +1,23 @@
+```
 // start mongo
 $ sudo mongod
+```
 
+```
 // start node server
 $ cd ~/Desktop/playground/wager/api
 $ node api.js
+```
 
 or
 
-$ nodemon api.js
+`$ nodemon api.js`
 
 // start mongodb console
-$ mongo
+`$ mongo`
 
 
-
+```
 db
     wager-api
 
@@ -45,4 +49,5 @@ User
     password :string
     email :string
     name :string
+```
 
