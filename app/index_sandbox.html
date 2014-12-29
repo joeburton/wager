@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="customersApp">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Wager</title>
+        <!-- Bootstrap -->
+        <link href="./src/lib/bootstrap-3.3.1/css/bootstrap.min.css" rel="stylesheet">
+        <!-- App styles -->
+        <link href="./src/stylesheets/global.css" rel="stylesheet">
+        <!-- Angular -->
+        <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular.min.js"></script>--> 
+        <script src="./src/lib/angular.min.js"></script>
+        <script src="./src/js/sandbox.js"></script>
+    </head>
+    <body>
+
+
+
+        <div class="container">
+            <div ng-controller="customersController"> 
+                <div ng-repeat="c in customers">
+                    {{c._id}} - {{c.username}} - {{c.email}} - <button ng-click="deleteCustomer(c._id)">delete</button>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <!-- jQuery-->
+        <script src="./src/lib/jquery-2.1.3.min.js"></script>
+        <!--Bootstrap-->
+        <script src="./src/lib/bootstrap-3.3.1/js/bootstrap.min.js"></script>
+        
+    </body>
+</html>
