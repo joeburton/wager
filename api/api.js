@@ -24,6 +24,7 @@ var User = new Schema({
 });
 
 var Bet = new Schema({
+    "user_id": String,
     "list_id": Number,
     "list_name": String,
     "tags": String,
@@ -58,8 +59,6 @@ server.use(
         return next();
     }
 );
-
-
 
 //--------- USER API ----------//
 
@@ -154,13 +153,15 @@ server.del('/api/user/:id', function (req, res, next) {
 //--------- BET API ----------//
 
 // return all bets
-server.get('/api/bet', function (req, res, next) {
+server.get('/api/bet/:uid', function (req, res, next) {
     // by default, return all bets
     var query = {}
     // if a 'query' param exists, parse the json string and refine the results
     if (req.params.query) {
         query = JSON.parse(req.params.query);
-    };
+    } else {
+        query = {user_id: req.params.uid};
+    }
 
     Bet.find(query, function (error, bets) {
         res.send(bets);
@@ -223,6 +224,7 @@ server.post('/api/bet', function (req, res, next) {
 // example _id: 54982aea39acde9ababb3560
 server.put('/api/bet/:id', function (req, res, next) {
     var betData = {
+        user_id: req.params.user_id,
         list_id: req.params.list_id,
         list_name: req.params.list_name,
         tags: req.params.tags,

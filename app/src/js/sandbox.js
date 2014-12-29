@@ -1,63 +1,70 @@
-var app = angular.module('customersApp', []);
+var app = angular.module('wagerApp', []);
+
+var USER_ID = "54982aea39acde9ababb3560";
 
 app.factory('dataFactory', ['$http', function($http) {
-
-    var urlBase = 'http://localhost:7000/api/user';
+    var urlBase = 'http://localhost:7000/api/bet';
     var dataFactory = {};
 
-    dataFactory.getCustomers = function () {
-        return $http.get(urlBase);
+    dataFactory.getBets = function () {
+    	// var query = '{"user_id": "54982aea39acde9ababb3560"}';
+     	// return $http.get(urlBase + '?query=' + query);
+     	return $http.get(urlBase + '/' + USER_ID);
     };
 
-    // dataFactory.getCustomer = function (id) {
-    //     return $http.get(urlBase + '/' + id);
-    // };
-
-    // dataFactory.insertCustomer = function (cust) {
-    //     return $http.post(urlBase, cust);
-    // };
-
-    // dataFactory.updateCustomer = function (cust) {
-    //     return $http.put(urlBase + '/' + cust.ID, cust)
-    // };
-
-    dataFactory.deleteCustomer = function (id) {
-    	console.log("1: "+id);
+    dataFactory.deleteBet = function (id) {
         return $http.delete(urlBase + '/' + id);
     };
 
-    // dataFactory.getOrders = function (id) {
-    //     return $http.get(urlBase + '/' + id + '/orders');
+    // dataFactory.getBet = function (id) {
+    //     return $http.get(urlBase + '/' + id);
     // };
+
+    // dataFactory.createBet = function (bet) {
+    //     return $http.post(urlBase, bet);
+    // };
+
+    // dataFactory.updateBet = function (bet) {
+    //     return $http.put(urlBase + '/' + bet._id, bet)
+    // };
+
 
     return dataFactory;
 }]);
 
 
-
-
-
-
-
-
-app.controller('customersController', ['$scope', 'dataFactory', 
-        function ($scope, dataFactory) {
-
+app.controller('betController', ['$scope', 'dataFactory', function ($scope, dataFactory) {
     $scope.status;
-    $scope.customers;
-    $scope.orders;
+    $scope.bets;
 
-    getCustomers();
+    getBets();
 
-    function getCustomers() {
-        dataFactory.getCustomers()
-            .success(function (custs) {
-                $scope.customers = custs;
+    function getBets() {
+        dataFactory.getBets()
+            .success(function (bets) {
+                $scope.bets = bets;
             })
             .error(function (error) {
-                $scope.status = 'Unable to load customer data: ' + error.message;
+                $scope.status = 'Unable to load data: ' + error.message;
             });
     }
+
+    $scope.deleteBet = function (id) {
+        dataFactory.deleteBet(id)
+        .success(function () {
+            $scope.status = 'Deleted Bet! Updating UI';
+            for (var i = 0; i < $scope.bets.length; i++) {
+                var bet = $scope.bets[i];
+                if (bet._id === id) {
+                    $scope.bets.splice(i, 1);
+                    break;
+                }
+            }
+        })
+        .error(function (error) {
+            $scope.status = 'Unable to delete bet: ' + error.message;
+        });
+    };
 
     // $scope.updateCustomer = function (id) {
     //     var cust;
@@ -95,24 +102,7 @@ app.controller('customersController', ['$scope', 'dataFactory',
     //         });
     // };
 
-    $scope.deleteCustomer = function (id) {
-    	console.log("2: "+id);
-        dataFactory.deleteCustomer(id)
-        .success(function () {
-            $scope.status = 'Deleted Customer! Refreshing customer list.';
-            for (var i = 0; i < $scope.customers.length; i++) {
-                var cust = $scope.customers[i];
-                if (cust._id === id) {
-                    $scope.customers.splice(i, 1);
-                    break;
-                }
-            }
-            $scope.orders = null;
-        })
-        .error(function (error) {
-            $scope.status = 'Unable to delete customer: ' + error.message;
-        });
-    };
+
 
     // $scope.getCustomerOrders = function (id) {
     //     dataFactory.getOrders(id)
