@@ -16,4 +16,7 @@ or
 ```
 // start mongodb console
 $ mongo
+
+// use db
+use wager-api
 ```

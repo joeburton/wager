@@ -1,268 +1,252 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Wager</title>
+<html lang="en" ng-app="myApp">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Wager</title>
+        <!-- Bootstrap -->
+        <link href="./src/lib/bootstrap-3.3.1/css/bootstrap.min.css" rel="stylesheet">
+        <!-- App styles -->
+        <link href="./src/stylesheets/global.css" rel="stylesheet">
+        <!-- Angular -->
+        <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular.min.js"></script>--> 
+        <script src="./src/lib/angular.min.js"></script>
+        <script src="./src/js/app.js"></script>
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="row">
+                <!--left column-->
+                <div class="col-md-3 left-column">
 
-    <!-- Bootstrap -->
-    <link href="./src/lib/bootstrap-3.3.1/css/bootstrap.min.css" rel="stylesheet">
-    <!-- App styles -->
-    <link href="./src/stylesheets/global.css" rel="stylesheet">
-</head>
-<body>
-    <div class="container-fluid">
-
-        <div class="row">
-            <!--left column-->
-            <div class="col-md-3 left-column">
-                <div class="block unresolved">
-                    <a href="#" class="delete"><span class="glyphicon glyphicon-trash right small" aria-hidden="true"></span></a>
-
-                    <p><small>Football > Spanish La Liga</small><br>
-                    Bournemouth v Liverpool<br>
-                    <small>23/12/14 - <strong>1v2, Home - £20.00</strong> @ <strong>2.20</strong> w/BetVictor</small></p>
-
-                    <div class="btn-group btn-group-xs right" role="group" aria-label="Extra-small button group">
-                        <button type="button" class="btn btn-default">
-                            <span class="glyphicon glyphicon-ok success" aria-hidden="true"></span>
-                        </button>
-                        <button type="button" class="btn btn-default">
-                            <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
-                        </button>
-                        <button type="button" class="btn btn-default">
-                            <span class="glyphicon glyphicon-remove danger" aria-hidden="true"></span>
-                        </button>
+                    <div ng-controller="betController">
+                        <div ng-repeat="b in betData">
+                            <h3>{{b.bookmaker}}</h3>
+                        </div>
                     </div>
-                </div>
 
-                <div class="block unresolved">
-                    <a href="#" class="delete"><span class="glyphicon glyphicon-trash right small" aria-hidden="true"></span></a>
 
-                    <p><small>Football > Spanish La Liga</small><br>
-                    Bournemouth v Liverpool<br>
-                    <small>23/12/14 - <strong>1v2, Home - £20.00</strong> @ <strong>2.20</strong> w/BetVictor</small></p>
-
-                    <div class="btn-group btn-group-xs right" role="group" aria-label="Extra-small button group">
-                        <button type="button" class="btn btn-default">
+                    <div class="block unresolved">
+                        <a href="#" class="delete"><span class="glyphicon glyphicon-trash right small" aria-hidden="true"></span></a>
+                        <p><small>Football > Spanish La Liga</small><br>
+                        Bournemouth v Liverpool<br>
+                        <small>23/12/14 - <strong>1v2, Home - £20.00</strong> @ <strong>2.20</strong> w/BetVictor</small></p>
+                        <div class="btn-group btn-group-xs right" role="group" aria-label="Extra-small button group">
+                            <button type="button" class="btn btn-default">
                             <span class="glyphicon glyphicon-ok success" aria-hidden="true"></span>
-                        </button>
-                        <button type="button" class="btn btn-default">
+                            </button>
+                            <button type="button" class="btn btn-default">
                             <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
-                        </button>
-                        <button type="button" class="btn btn-default">
+                            </button>
+                            <button type="button" class="btn btn-default">
                             <span class="glyphicon glyphicon-remove danger" aria-hidden="true"></span>
-                        </button>
+                            </button>
+                        </div>
                     </div>
-                </div>
-
-                <div class="block unresolved">
-                    <a href="#" class="delete"><span class="glyphicon glyphicon-trash right small" aria-hidden="true"></span></a>
-
-                    <p><small>Football > Spanish La Liga</small><br>
-                    Bournemouth v Liverpool<br>
-                    <small>23/12/14 - <strong>1v2, Home - £20.00</strong> @ <strong>2.20</strong> w/BetVictor</small></p>
-
-                    <div class="btn-group btn-group-xs right" role="group" aria-label="Extra-small button group">
-                        <button type="button" class="btn btn-default">
+                    <div class="block unresolved">
+                        <a href="#" class="delete"><span class="glyphicon glyphicon-trash right small" aria-hidden="true"></span></a>
+                        <p><small>Football > Spanish La Liga</small><br>
+                        Bournemouth v Liverpool<br>
+                        <small>23/12/14 - <strong>1v2, Home - £20.00</strong> @ <strong>2.20</strong> w/BetVictor</small></p>
+                        <div class="btn-group btn-group-xs right" role="group" aria-label="Extra-small button group">
+                            <button type="button" class="btn btn-default">
                             <span class="glyphicon glyphicon-ok success" aria-hidden="true"></span>
-                        </button>
-                        <button type="button" class="btn btn-default">
+                            </button>
+                            <button type="button" class="btn btn-default">
                             <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
-                        </button>
-                        <button type="button" class="btn btn-default">
+                            </button>
+                            <button type="button" class="btn btn-default">
                             <span class="glyphicon glyphicon-remove danger" aria-hidden="true"></span>
-                        </button>
+                            </button>
+                        </div>
                     </div>
-                </div>
-
-                <div class="block unresolved">
-                    <a href="#" class="delete"><span class="glyphicon glyphicon-trash right small" aria-hidden="true"></span></a>
-
-                    <p><small>Football > Spanish La Liga</small><br>
-                    Bournemouth v Liverpool<br>
-                    <small>23/12/14 - <strong>1v2, Home - £20.00</strong> @ <strong>2.20</strong> w/BetVictor</small></p>
-
-                    <div class="btn-group btn-group-xs right" role="group" aria-label="Extra-small button group">
-                        <button type="button" class="btn btn-default">
+                    <div class="block unresolved">
+                        <a href="#" class="delete"><span class="glyphicon glyphicon-trash right small" aria-hidden="true"></span></a>
+                        <p><small>Football > Spanish La Liga</small><br>
+                        Bournemouth v Liverpool<br>
+                        <small>23/12/14 - <strong>1v2, Home - £20.00</strong> @ <strong>2.20</strong> w/BetVictor</small></p>
+                        <div class="btn-group btn-group-xs right" role="group" aria-label="Extra-small button group">
+                            <button type="button" class="btn btn-default">
                             <span class="glyphicon glyphicon-ok success" aria-hidden="true"></span>
-                        </button>
-                        <button type="button" class="btn btn-default">
+                            </button>
+                            <button type="button" class="btn btn-default">
                             <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
-                        </button>
-                        <button type="button" class="btn btn-default">
+                            </button>
+                            <button type="button" class="btn btn-default">
                             <span class="glyphicon glyphicon-remove danger" aria-hidden="true"></span>
-                        </button>
+                            </button>
+                        </div>
                     </div>
-                </div>
-
-                <div class="block unresolved">
-                    <a href="#" class="delete"><span class="glyphicon glyphicon-trash right small" aria-hidden="true"></span></a>
-
-                    <p><small>Football > Spanish La Liga</small><br>
-                    Bournemouth v Liverpool<br>
-                    <small>23/12/14 - <strong>1v2, Home - £20.00</strong> @ <strong>2.20</strong> w/BetVictor</small></p>
-
-                    <div class="btn-group btn-group-xs right" role="group" aria-label="Extra-small button group">
-                        <button type="button" class="btn btn-default">
+                    <div class="block unresolved">
+                        <a href="#" class="delete"><span class="glyphicon glyphicon-trash right small" aria-hidden="true"></span></a>
+                        <p><small>Football > Spanish La Liga</small><br>
+                        Bournemouth v Liverpool<br>
+                        <small>23/12/14 - <strong>1v2, Home - £20.00</strong> @ <strong>2.20</strong> w/BetVictor</small></p>
+                        <div class="btn-group btn-group-xs right" role="group" aria-label="Extra-small button group">
+                            <button type="button" class="btn btn-default">
                             <span class="glyphicon glyphicon-ok success" aria-hidden="true"></span>
-                        </button>
-                        <button type="button" class="btn btn-default">
+                            </button>
+                            <button type="button" class="btn btn-default">
                             <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
-                        </button>
-                        <button type="button" class="btn btn-default">
+                            </button>
+                            <button type="button" class="btn btn-default">
                             <span class="glyphicon glyphicon-remove danger" aria-hidden="true"></span>
-                        </button>
+                            </button>
+                        </div>
                     </div>
+                    <div class="block unresolved">
+                        <a href="#" class="delete"><span class="glyphicon glyphicon-trash right small" aria-hidden="true"></span></a>
+                        <p><small>Football > Spanish La Liga</small><br>
+                        Bournemouth v Liverpool<br>
+                        <small>23/12/14 - <strong>1v2, Home - £20.00</strong> @ <strong>2.20</strong> w/BetVictor</small></p>
+                        <div class="btn-group btn-group-xs right" role="group" aria-label="Extra-small button group">
+                            <button type="button" class="btn btn-default">
+                            <span class="glyphicon glyphicon-ok success" aria-hidden="true"></span>
+                            </button>
+                            <button type="button" class="btn btn-default">
+                            <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+                            </button>
+                            <button type="button" class="btn btn-default">
+                            <span class="glyphicon glyphicon-remove danger" aria-hidden="true"></span>
+                            </button>
+                        </div>
+                    </div>
+                    
                 </div>
-
-                
-            </div>
-
-            <!--right column-->
-            <div class="col-md-9 right-column">
-
-                <div role="tabpanel">
-                    <!-- Nav tabs -->
-                    <ul class="nav nav-tabs" role="tablist">
-                        <li role="presentation" class="active">
-                            <a href="#new" aria-controls="new" role="tab" data-toggle="tab">New</a>
-                        </li>
-                        <li role="presentation">
-                            <a href="#record" aria-controls="record" role="tab" data-toggle="tab">Record</a>
-                        </li>
-                        <li role="presentation">
-                            <a href="#chart" aria-controls="chart" role="tab" data-toggle="tab">Chart</a>
-                        </li>
-                        <li role="presentation">
-                            <a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">
-                                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-                            </a>
-                        </li>
-                    </ul>
-
-                    <!-- Tab panes -->
-                    <div class="tab-content">
-                        <div role="tabpanel" class="tab-pane fade in active" id="new">
-
-                            <div class="breather">
-                                <div class="alert alert-warning" role="alert">
-                                    <strong>Oops!</strong> You done something wrong... jerk.
-                                </div>
-
-                                <br>
-                                <div class="row">
-                                    <div class="col-xs-4">
-                                        <label for="" class="text-muted">Type</label>
-                                        <input type="text" value="" data-var="" class="form-control">
-                                        <p class="help-block"><code>Football</code>, <code>Darts</code></p>
+                <!--right column-->
+                <div class="col-md-9 right-column">
+                    <div role="tabpanel">
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active">
+                                <a href="#new" aria-controls="new" role="tab" data-toggle="tab">New</a>
+                            </li>
+                            <li role="presentation">
+                                <a href="#record" aria-controls="record" role="tab" data-toggle="tab">Record</a>
+                            </li>
+                            <li role="presentation">
+                                <a href="#chart" aria-controls="chart" role="tab" data-toggle="tab">Chart</a>
+                            </li>
+                            <li role="presentation">
+                                <a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">
+                                    <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                                </a>
+                            </li>
+                        </ul>
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane fade in active" id="new">
+                                <div class="breather">
+                                    <div class="alert alert-warning" role="alert">
+                                        <strong>Oops!</strong> You done something wrong... jerk.
                                     </div>
-                                    <div class="col-xs-4">
-                                        <label for="" class="text-muted">Event</label>
-                                        <input type="text" value="" data-var="" class="form-control">
-                                        <p class="help-block"><code>EPL</code>, <code>Spanish La Liga</code></p>
-                                    </div>
-                                    <div class="col-xs-4">
-                                        <label for="" class="text-muted">Bookmaker</label>
-                                        <input type="text" value="" data-var="" class="form-control">
-                                        <p class="help-block"><code>BetVictor</code>, <code>Ladbrokes</code></p>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-xs-4">
-                                        <label for="" class="text-muted">Fixture</label>
-                                        <input type="text" value="" data-var="" class="form-control">
-                                        <p class="help-block"><code>Bournemouth v Liverpool</code></code></p>
-                                    </div>
-                                    <div class="col-xs-4">
-                                        <label for="" class="text-muted">Market</label>
-                                        <input type="text" value="" data-var="" class="form-control">
-                                        <p class="help-block"><code>1v2</code>, <code>BTTS</code>, <code>Outright</code></p>
-                                    </div>
-                                    <div class="col-xs-4">
-                                        <label for="" class="text-muted">Selection</label>
-                                        <input type="text" value="" data-var="" class="form-control">
-                                        <p class="help-block"><code>Home</code>, <code>Yes</code>, <code>Winner</code></p>
-                                    </div>
-                                    
-
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-xs-4">
-                                        <label for="" class="text-muted">Stake</label>
-                                        <div class="input-group">
-                                            <div class="input-group-addon">£</div>
-                                            <input type="text" class="form-control">
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-xs-4">
+                                            <label for="" class="text-muted">Type</label>
+                                            <input type="text" value="" data-var="" class="form-control">
+                                            <p class="help-block"><code>Football</code>, <code>Darts</code></p>
                                         </div>
-                                        <p class="help-block"><code>20.00</code>, <code>35.68</code></p>
+                                        <div class="col-xs-4">
+                                            <label for="" class="text-muted">Event</label>
+                                            <input type="text" value="" data-var="" class="form-control">
+                                            <p class="help-block"><code>EPL</code>, <code>Spanish La Liga</code></p>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <label for="" class="text-muted">Bookmaker</label>
+                                            <input type="text" value="" data-var="" class="form-control">
+                                            <p class="help-block"><code>BetVictor</code>, <code>Ladbrokes</code></p>
+                                        </div>
                                     </div>
-                                    <div class="col-xs-4">
-                                        <label for="" class="text-muted">Price</label>
-                                        <input type="text" value="" data-var="" class="form-control">
-                                        <p class="help-block"><code>2.05</code>, <code>5.00</code></p>
+                                    <div class="row">
+                                        <div class="col-xs-4">
+                                            <label for="" class="text-muted">Fixture</label>
+                                            <input type="text" value="" data-var="" class="form-control">
+                                            <p class="help-block"><code>Bournemouth v Liverpool</code></code></p>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <label for="" class="text-muted">Market</label>
+                                            <input type="text" value="" data-var="" class="form-control">
+                                            <p class="help-block"><code>1v2</code>, <code>BTTS</code>, <code>Outright</code></p>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <label for="" class="text-muted">Selection</label>
+                                            <input type="text" value="" data-var="" class="form-control">
+                                            <p class="help-block"><code>Home</code>, <code>Yes</code>, <code>Winner</code></p>
+                                        </div>
+                                        
                                     </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-xs-4">
-                                        <br>
-                                        <button type="button" class="btn btn-primary">Submit</button>
-                                        <button type="button" class="btn btn-default">Clear</button>
+                                    <div class="row">
+                                        <div class="col-xs-4">
+                                            <label for="" class="text-muted">Stake</label>
+                                            <div class="input-group">
+                                                <div class="input-group-addon">£</div>
+                                                <input type="text" class="form-control">
+                                            </div>
+                                            <p class="help-block"><code>20.00</code>, <code>35.68</code></p>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <label for="" class="text-muted">Price</label>
+                                            <input type="text" value="" data-var="" class="form-control">
+                                            <p class="help-block"><code>2.05</code>, <code>5.00</code></p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-4">
+                                            <br>
+                                            <button type="button" class="btn btn-primary">Submit</button>
+                                            <button type="button" class="btn btn-default">Clear</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
-                        <div role="tabpanel" class="tab-pane fade" id="record">
-                            <div class="breather">
-                                <table class="table">
-                                  <thead>
-                                    <tr>
-                                      <th>#</th>
-                                      <th>First Name</th>
-                                      <th>Last Name</th>
-                                      <th>Username</th>
-                                    </tr>
-                                  </thead>
-                                  <tbody>
-                                    <tr>
-                                      <th scope="row">1</th>
-                                      <td>Mark</td>
-                                      <td>Otto</td>
-                                      <td>@mdo</td>
-                                    </tr>
-                                    <tr>
-                                      <th scope="row">2</th>
-                                      <td>Jacob</td>
-                                      <td>Thornton</td>
-                                      <td>@fat</td>
-                                    </tr>
-                                    <tr>
-                                      <th scope="row">3</th>
-                                      <td>Larry</td>
-                                      <td>the Bird</td>
-                                      <td>@twitter</td>
-                                    </tr>
-                                  </tbody>
-                                </table>
+                            <div role="tabpanel" class="tab-pane fade" id="record">
+                                <div class="breather">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>First Name</th>
+                                                <th>Last Name</th>
+                                                <th>Username</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row">1</th>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">2</th>
+                                                <td>Jacob</td>
+                                                <td>Thornton</td>
+                                                <td>@fat</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">3</th>
+                                                <td>Larry</td>
+                                                <td>the Bird</td>
+                                                <td>@twitter</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
+                            <div role="tabpanel" class="tab-pane fade" id="chart">...</div>
+                            <div role="tabpanel" class="tab-pane fade" id="settings">...</div>
                         </div>
-                        <div role="tabpanel" class="tab-pane fade" id="chart">...</div>
-                        <div role="tabpanel" class="tab-pane fade" id="settings">...</div>
-                    </div>
-                </div><!--/tabpanel-->
+                        </div><!--/tabpanel-->
+                        </div><!-- /col-md-8 -->
+                        </div><!-- /row -->
+                        </div><!-- /container-fluid -->
 
-            </div><!-- /col-md-8 -->
-        </div><!-- /row -->
-
-    </div><!-- /container-fluid -->
-
-    <!-- jQuery-->
-    <script src="./src/lib/jquery-2.1.3.min.js"></script>
-    <!--Bootstrap-->
-    <script src="./src/lib/bootstrap-3.3.1/js/bootstrap.min.js"></script>
-</body>
-</html>
+                        <!-- jQuery-->
+                        <script src="./src/lib/jquery-2.1.3.min.js"></script>
+                        <!--Bootstrap-->
+                        <script src="./src/lib/bootstrap-3.3.1/js/bootstrap.min.js"></script>
+                        
+                    </body>
+                </html>
