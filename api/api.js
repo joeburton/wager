@@ -205,7 +205,7 @@ server.post('/api/bet', function (req, res, next) {
         price: req.params.price,
         outcome: req.params.outcome,
         return: req.params.return,
-        profit: req.params.profit
+        profit: req.params.profit,
     };
     
     var bet = new Bet(betData);

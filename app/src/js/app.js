@@ -10,7 +10,6 @@ app.factory('dataFactory', ['$http', function($http) {
     dataFactory.getBets = function () {
         // var query = '{"user_id": "54982aea39acde9ababb3560"}';
         // return $http.get(urlBase + '?query=' + query);
-        console.log('foo')
         return $http.get(urlBase + '/' + USER_ID);
     };
 
@@ -22,9 +21,9 @@ app.factory('dataFactory', ['$http', function($http) {
     //     return $http.get(urlBase + '/' + id);
     // };
 
-    // dataFactory.createBet = function (bet) {
-    //     return $http.post(urlBase, bet);
-    // };
+    dataFactory.createBet = function (bet) {
+        return $http.post(urlBase, bet);
+    };
 
     // dataFactory.updateBet = function (bet) {
     //     return $http.put(urlBase + '/' + bet._id, bet)
@@ -38,7 +37,23 @@ app.factory('dataFactory', ['$http', function($http) {
 app.controller('betController', ['$scope', 'dataFactory', function ($scope, dataFactory) {
     $scope.status;
     $scope.bets;
-    $scope.bookmaker = '';
+    
+    // form values
+    $scope.userId = USER_ID,
+    $scope.listId = '1',
+    $scope.listName = 'default',
+    $scope.tags = '',
+    $scope.eventType = '',
+    $scope.event = '',
+    $scope.fixture = '',
+    $scope.betType = '',
+    $scope.selection = '',
+    $scope.bookmaker = '',
+    $scope.stake = null,
+    $scope.price = null,
+    $scope.outcome = 'open',
+    $scope.return = null,
+    $scope.profit = null
 
     getBets();
 
@@ -52,7 +67,9 @@ app.controller('betController', ['$scope', 'dataFactory', function ($scope, data
             });
     }
 
-    $scope.deleteBet = function (id) {
+    $scope.deleteBet = function (id, event) {
+        event.preventDefault();
+
         dataFactory.deleteBet(id)
         .success(function () {
             $scope.status = 'Deleted Bet! Updating UI';
@@ -69,9 +86,42 @@ app.controller('betController', ['$scope', 'dataFactory', function ($scope, data
         });
     };
 
+    $scope.createBet = function (bet) {
+        dataFactory.createBet(bet)
+            .success(function () {
+                $scope.status = 'Created Bet! Update UI.';
+                $scope.bets.push(bet);
+            }).
+            error(function(error) {
+                $scope.status = 'Unable to create bet: ' + error.message;
+            });
+    };
+
     $scope.submit = function() {
-          console.log($scope.bookmaker);
-      };
+        var bet = {
+            user_id: $scope.userId,
+            list_id: $scope.listId,
+            list_name: $scope.listName,
+            tags: $scope.tags,
+            event_type: $scope.eventType,
+            event: $scope.event,
+            fixture: $scope.fixture,
+            bet_type: $scope.betType,
+            selection: $scope.selection,
+            bookmaker: $scope.bookmaker,
+            stake: $scope.stake,
+            price: $scope.price,
+            outcome: $scope.outcome,
+            return: $scope.return,
+            profit: $scope.profit
+        };
+
+        $scope.createBet(bet);
+    };
+
+    $scope.resetForm = function (formSelector) {
+        $(formSelector).find('input[type="text"]').val("");
+    };
 
     // $scope.updateCustomer = function (id) {
     //     var cust;
@@ -90,23 +140,6 @@ app.controller('betController', ['$scope', 'dataFactory', function ($scope, data
     //       .error(function (error) {
     //           $scope.status = 'Unable to update customer: ' + error.message;
     //       });
-    // };
-
-    // $scope.insertCustomer = function () {
-    //     //Fake customer data
-    //     var cust = {
-    //         ID: 10,
-    //         FirstName: 'JoJo',
-    //         LastName: 'Pikidily'
-    //     };
-    //     dataFactory.insertCustomer(cust)
-    //         .success(function () {
-    //             $scope.status = 'Inserted Customer! Refreshing customer list.';
-    //             $scope.customers.push(cust);
-    //         }).
-    //         error(function(error) {
-    //             $scope.status = 'Unable to insert customer: ' + error.message;
-    //         });
     // };
 
 
