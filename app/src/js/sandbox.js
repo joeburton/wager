@@ -36,6 +36,7 @@ app.factory('dataFactory', ['$http', function($http) {
 app.controller('betController', ['$scope', 'dataFactory', function ($scope, dataFactory) {
     $scope.status;
     $scope.bets;
+    $scope.bookmaker = '';
 
     getBets();
 
@@ -65,6 +66,10 @@ app.controller('betController', ['$scope', 'dataFactory', function ($scope, data
             $scope.status = 'Unable to delete bet: ' + error.message;
         });
     };
+
+    $scope.submit = function() {
+          console.log($scope.bookmaker);
+      };
 
     // $scope.updateCustomer = function (id) {
     //     var cust;
