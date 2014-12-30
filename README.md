@@ -14,6 +14,12 @@ or
 `$ nodemon api.js`
 
 ```
+// watch for style changes
+$ cd ~/Desktop/playground/wager/app/src
+$ compass watch
+```
+
+```
 // start mongodb console
 $ mongo
 

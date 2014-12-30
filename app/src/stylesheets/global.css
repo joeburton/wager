@@ -44,40 +44,41 @@
 .left-column {
   border-right: 1px solid #ddd;
   padding: 0;
+  height: 700px;
 }
 
-/* line 52, ../sass/global.scss */
+/* line 53, ../sass/global.scss */
 .right-column {
   padding: 0;
 }
 
-/* line 56, ../sass/global.scss */
+/* line 57, ../sass/global.scss */
 .glyphicon.success {
   color: #5cb85c;
 }
 
-/* line 59, ../sass/global.scss */
+/* line 60, ../sass/global.scss */
 .glyphicon.danger {
   color: #d9534f;
 }
 
-/* line 62, ../sass/global.scss */
+/* line 63, ../sass/global.scss */
 .block.unresolved {
   font-size: 16px;
   padding: 20px;
   border-bottom: 1px solid #ddd;
   overflow: hidden;
 }
-/* line 68, ../sass/global.scss */
+/* line 69, ../sass/global.scss */
 .block.unresolved small {
   font-size: 70%;
   color: #777777;
 }
-/* line 73, ../sass/global.scss */
+/* line 74, ../sass/global.scss */
 .block.unresolved .delete:hover .glyphicon-trash {
   color: #555555;
 }
-/* line 77, ../sass/global.scss */
+/* line 78, ../sass/global.scss */
 .block.unresolved .glyphicon-trash {
   color: #eeeeee;
   float: right;

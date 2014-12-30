@@ -20,15 +20,11 @@
             <div class="row">
                 <!--left column-->
                 <div class="col-md-3 left-column">
-                    <div ng-repeat="b in bets | filter: { outcome: 'open' }">
-                        {{b.user_id}} - {{b.bookmaker}}- <button ng-click="deleteBet(b._id)">delete</button>
-                    </div>
-
-                    <div class="block unresolved">
-                        <a href="#" class="delete"><span class="glyphicon glyphicon-trash right small" aria-hidden="true"></span></a>
-                        <p><small>Football > Spanish La Liga</small><br>
-                        Bournemouth v Liverpool<br>
-                        <small>23/12/14 - <strong>1v2, Home - £20.00</strong> @ <strong>2.20</strong> w/BetVictor</small></p>
+                    <div class="block unresolved" ng-repeat="b in bets | filter: { outcome: 'open' }">
+                        <a href="#" class="delete" ng-click="deleteBet(b._id)"><span class="glyphicon glyphicon-trash right small" aria-hidden="true"></span></a>
+                        <p><small>{{b.event_type}} > {{b.event}}</small><br>
+                        {{b.fixture}}<br>
+                        <small>23/12/14 - <strong>{{b.bet_type}}, {{b.selection}} - {{b.stake}}</strong> @ <strong>{{b.price}}</strong> w/{{b.bookmaker}}</small></p>
                         <div class="btn-group btn-group-xs right" role="group" aria-label="Extra-small button group">
                             <button type="button" class="btn btn-default">
                             <span class="glyphicon glyphicon-ok success" aria-hidden="true"></span>
@@ -41,76 +37,8 @@
                             </button>
                         </div>
                     </div>
-                    <div class="block unresolved">
-                        <a href="#" class="delete"><span class="glyphicon glyphicon-trash right small" aria-hidden="true"></span></a>
-                        <p><small>Football > Spanish La Liga</small><br>
-                        Bournemouth v Liverpool<br>
-                        <small>23/12/14 - <strong>1v2, Home - £20.00</strong> @ <strong>2.20</strong> w/BetVictor</small></p>
-                        <div class="btn-group btn-group-xs right" role="group" aria-label="Extra-small button group">
-                            <button type="button" class="btn btn-default">
-                            <span class="glyphicon glyphicon-ok success" aria-hidden="true"></span>
-                            </button>
-                            <button type="button" class="btn btn-default">
-                            <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
-                            </button>
-                            <button type="button" class="btn btn-default">
-                            <span class="glyphicon glyphicon-remove danger" aria-hidden="true"></span>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="block unresolved">
-                        <a href="#" class="delete"><span class="glyphicon glyphicon-trash right small" aria-hidden="true"></span></a>
-                        <p><small>Football > Spanish La Liga</small><br>
-                        Bournemouth v Liverpool<br>
-                        <small>23/12/14 - <strong>1v2, Home - £20.00</strong> @ <strong>2.20</strong> w/BetVictor</small></p>
-                        <div class="btn-group btn-group-xs right" role="group" aria-label="Extra-small button group">
-                            <button type="button" class="btn btn-default">
-                            <span class="glyphicon glyphicon-ok success" aria-hidden="true"></span>
-                            </button>
-                            <button type="button" class="btn btn-default">
-                            <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
-                            </button>
-                            <button type="button" class="btn btn-default">
-                            <span class="glyphicon glyphicon-remove danger" aria-hidden="true"></span>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="block unresolved">
-                        <a href="#" class="delete"><span class="glyphicon glyphicon-trash right small" aria-hidden="true"></span></a>
-                        <p><small>Football > Spanish La Liga</small><br>
-                        Bournemouth v Liverpool<br>
-                        <small>23/12/14 - <strong>1v2, Home - £20.00</strong> @ <strong>2.20</strong> w/BetVictor</small></p>
-                        <div class="btn-group btn-group-xs right" role="group" aria-label="Extra-small button group">
-                            <button type="button" class="btn btn-default">
-                            <span class="glyphicon glyphicon-ok success" aria-hidden="true"></span>
-                            </button>
-                            <button type="button" class="btn btn-default">
-                            <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
-                            </button>
-                            <button type="button" class="btn btn-default">
-                            <span class="glyphicon glyphicon-remove danger" aria-hidden="true"></span>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="block unresolved">
-                        <a href="#" class="delete"><span class="glyphicon glyphicon-trash right small" aria-hidden="true"></span></a>
-                        <p><small>Football > Spanish La Liga</small><br>
-                        Bournemouth v Liverpool<br>
-                        <small>23/12/14 - <strong>1v2, Home - £20.00</strong> @ <strong>2.20</strong> w/BetVictor</small></p>
-                        <div class="btn-group btn-group-xs right" role="group" aria-label="Extra-small button group">
-                            <button type="button" class="btn btn-default">
-                            <span class="glyphicon glyphicon-ok success" aria-hidden="true"></span>
-                            </button>
-                            <button type="button" class="btn btn-default">
-                            <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
-                            </button>
-                            <button type="button" class="btn btn-default">
-                            <span class="glyphicon glyphicon-remove danger" aria-hidden="true"></span>
-                            </button>
-                        </div>
-                    </div>
-                    
                 </div>
+
                 <!--right column-->
                 <div class="col-md-9 right-column">
                     <div role="tabpanel">
