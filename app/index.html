@@ -19,19 +19,19 @@
                 <!--left column-->
                 <div class="col-md-3 left-column">
                     <div class="block unresolved" ng-repeat="b in bets | filter: { outcome: 'open' }">
-                        <a href="#" class="delete" ng-click="deleteBet(b._id, $event)"><span class="glyphicon glyphicon-trash right small" aria-hidden="true"></span></a>
+                        <a href="#" class="delete" ng-click="deleteBet(b.bet_id, $event)"><span class="glyphicon glyphicon-trash right small" aria-hidden="true"></span></a>
                         <p><small>{{b.event_type}} > {{b.event}}</small><br>
                         {{b.fixture}}<br>
-                        <small>23/12/14 - <strong>{{b.bet_type}}, {{b.selection}} - {{b.stake | currency: "&pound;"}}</strong> @ <strong>{{b.price | number:2}}</strong> w/{{b.bookmaker}}</small></p>
+                        <small>23/12/14 - <strong>{{b.bet_type}}, {{b.selection}} - {{b.stake | currency: "&pound;"}}</strong> @ <strong>{{b.price | number:2}}</strong> w/{{b.bookmaker}}</small> - {{b.bet_id}}</p>
                         <div class="btn-group btn-group-xs right" role="group" aria-label="Extra-small button group">
                             <button type="button" class="btn btn-default" ng-click="updateOutcome(b, 'win')">
-                            <span class="glyphicon glyphicon-ok success" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-ok success" aria-hidden="true"></span>
                             </button>
                             <button type="button" class="btn btn-default" ng-click="updateOutcome(b, 'void')">
-                            <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
                             </button>
                             <button type="button" class="btn btn-default" ng-click="updateOutcome(b, 'lose')">
-                            <span class="glyphicon glyphicon-remove danger" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-remove danger" aria-hidden="true"></span>
                             </button>
                         </div>
                     </div>
@@ -129,36 +129,9 @@
                             </div>
                             <div role="tabpanel" class="tab-pane fade" id="record">
                                 <div class="breather">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th>#</th>
-                                                <th>First Name</th>
-                                                <th>Last Name</th>
-                                                <th>Username</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <th scope="row">1</th>
-                                                <td>Mark</td>
-                                                <td>Otto</td>
-                                                <td>@mdo</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">2</th>
-                                                <td>Jacob</td>
-                                                <td>Thornton</td>
-                                                <td>@fat</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">3</th>
-                                                <td>Larry</td>
-                                                <td>the Bird</td>
-                                                <td>@twitter</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                    <div class="block unresolved" ng-repeat="b in bets | filter: { outcome: '!open' } | orderBy: 'created_at'">
+                                        <p>{{b.bet_id}} - {{b.fixture}} - {{b.stake | currency: "&pound;"}} - {{b.price | number:2}} - {{b.outcome}} - <span ng-class="{'text-success': b.outcome == 'win', 'text-danger': b.outcome == 'lose'}"><strong>{{b.profit | currency: "&pound;"}}</strong></span> - {{b.return | currency: "&pound;"}}</p>
+                                    </div>
                                 </div>
                             </div>
                             <div role="tabpanel" class="tab-pane fade" id="chart">

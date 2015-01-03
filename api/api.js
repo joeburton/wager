@@ -24,6 +24,7 @@ var User = new Schema({
 });
 
 var Bet = new Schema({
+    "bet_id": String,
     "user_id": String,
     "list_id": Number,
     "list_name": String,
@@ -172,7 +173,7 @@ server.get('/api/bet/:uid', function (req, res, next) {
 // return single bet
 // example _id: 54982d73441dc9c0bed7149b
 server.get('/api/bet/:id', function (req, res, next) {
-    Bet.findOne({ _id: req.params.id }, function (error, bet) {
+    Bet.findOne({ bet_id: req.params.id }, function (error, bet) {
     if (error) return next(new restify.InvalidArgumentError(JSON.stringify(error.errors)))
         if (bet) {
             res.send(bet)
@@ -191,6 +192,7 @@ server.post('/api/bet', function (req, res, next) {
     }
     
     var betData = {
+        bet_id: req.params.bet_id,
         user_id: req.params.user_id,
         list_id: req.params.list_id,
         list_name: req.params.list_name,
@@ -224,6 +226,7 @@ server.post('/api/bet', function (req, res, next) {
 // example _id: 54982aea39acde9ababb3560
 server.put('/api/bet/:id', function (req, res, next) {
     var betData = {
+        bet_id: req.params.bet_id,
         user_id: req.params.user_id,
         list_id: req.params.list_id,
         list_name: req.params.list_name,
@@ -241,7 +244,7 @@ server.put('/api/bet/:id', function (req, res, next) {
         profit: req.params.profit
     };
     
-    Bet.update({ _id: req.params.id }, betData, {
+    Bet.update({ bet_id: req.params.id }, betData, {
         multi: false
     }, function (error, bet) {
         if (error) return next(new restify.InvalidArgumentError(JSON.stringify(error.errors)))
@@ -252,7 +255,7 @@ server.put('/api/bet/:id', function (req, res, next) {
 
 // delete bet
 server.del('/api/bet/:id', function (req, res, next) {
-    Bet.remove({ _id: req.params.id }, function (error, bet) {
+    Bet.remove({ bet_id: req.params.id }, function (error, bet) {
         if (error) {
             return next(new restify.InvalidArgumentError(JSON.stringify(error.errors)));
         }

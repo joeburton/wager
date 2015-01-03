@@ -3,6 +3,12 @@
 
     var USER_ID = "54982aea39acde9ababb3560";
 
+    // use to generate unique bet id
+    var uniqueToken = function generateQuickGuid() {
+    return Math.random().toString(36).substring(2, 15) +
+        Math.random().toString(36).substring(2, 15);
+    }
+
     app.factory('dataFactory', ['$http', function($http) {
         var urlBase = 'http://localhost:7000/api/bet';
         var dataFactory = {};
@@ -24,18 +30,18 @@
         };
 
         dataFactory.updateBet = function (bet) {
-            return $http.put(urlBase + '/' + bet._id, bet)
+            return $http.put(urlBase + '/' + bet.bet_id, bet)
         };
 
         return dataFactory;
     }]);
-
 
     app.controller('betController', ['$scope', 'dataFactory', function ($scope, dataFactory) {
         $scope.status;
         $scope.bets;
         
         // form values
+        $scope.betId = '',
         $scope.userId = USER_ID,
         $scope.listId = '1',
         $scope.listName = 'default',
@@ -46,11 +52,11 @@
         $scope.betType = '',
         $scope.selection = '',
         $scope.bookmaker = '',
-        $scope.stake = null,
-        $scope.price = null,
+        $scope.stake = 0,
+        $scope.price = 0,
         $scope.outcome = 'open',
-        $scope.return = null,
-        $scope.profit = null
+        $scope.return = 0,
+        $scope.profit = 0
 
         getBets();
 
@@ -72,7 +78,7 @@
                 $scope.status = 'Deleted Bet! Updating UI';
                 for (var i = 0; i < $scope.bets.length; i++) {
                     var bet = $scope.bets[i];
-                    if (bet._id === id) {
+                    if (bet.bet_id === id) {
                         $scope.bets.splice(i, 1);
                         break;
                     }
@@ -98,7 +104,7 @@
             var bet;
             for (var i = 0; i < $scope.bets.length; i++) {
                 var currBet = $scope.bets[i];
-                if (currBet._id === bet._id) {
+                if (currBet.bet_id === bet.bet_id) {
                     bet = currBet;
                     break;
                 }
@@ -115,8 +121,9 @@
 
         $scope.submit = function() {
             var bet = {
+                bet_id: uniqueToken(),
                 user_id: $scope.userId,
-                list_id: $scope.listId,
+                list_id: parseFloat($scope.listId),
                 list_name: $scope.listName,
                 tags: $scope.tags,
                 event_type: $scope.eventType,
@@ -125,11 +132,11 @@
                 bet_type: $scope.betType,
                 selection: $scope.selection,
                 bookmaker: $scope.bookmaker,
-                stake: $scope.stake,
-                price: $scope.price,
+                stake: parseFloat($scope.stake),
+                price: parseFloat($scope.price),
                 outcome: $scope.outcome,
-                return: $scope.return,
-                profit: $scope.profit
+                return: parseFloat($scope.return),
+                profit: parseFloat($scope.profit)
             };
 
             $scope.createBet(bet);
@@ -141,7 +148,40 @@
 
         $scope.updateOutcome = function (bet, outcome) {
             bet.outcome = outcome;
+            bet.profit = $scope.calcProfit(bet); console.log(bet.profit);
+            bet.return = $scope.calcReturn(bet) ; console.log(bet.return);
+
             $scope.updateBet(bet);
+        }
+
+        $scope.calcProfit = function (bet) {
+            var profit = 0;
+
+            if (!bet.outcome || bet.outcome === 'void') {
+                console.log('void');
+                profit = 0;
+
+            // } else if (bet.freeBet) {
+            //     console.log('winning freebet');
+            //     profit += bet.stake;
+
+            } else if (bet.outcome === 'win') {
+                console.log('win');
+                profit = bet.stake * bet.price;
+            
+            } else if (bet.outcome === 'lose') {
+                console.log('lose');
+                // if (!bet.freebet) {
+                    profit = 0 - bet.stake;
+                // }
+            }
+
+            return profit;
+        }
+
+        $scope.calcReturn = function (bet) {
+            var rtn = bet.stake + bet.profit;
+            return rtn; 
         }
     }]);
 
