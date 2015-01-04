@@ -18,11 +18,13 @@
             <div class="row">
                 <!--left column-->
                 <div class="col-md-3 left-column">
-                    <div class="block unresolved" ng-repeat="b in bets | filter: { outcome: 'open' }">
+                    <div class="block unresolved" ng-repeat="b in bets | filter: { outcome: 'open'} | orderBy: 'created'">
                         <a href="#" class="delete" ng-click="deleteBet(b.bet_id, $event)"><span class="glyphicon glyphicon-trash right small" aria-hidden="true"></span></a>
-                        <p><small>{{b.event_type}} > {{b.event}}</small><br>
-                        {{b.fixture}}<br>
-                        <small>23/12/14 - <strong>{{b.bet_type}}, {{b.selection}} - {{b.stake | currency: "&pound;"}}</strong> @ <strong>{{b.price | number:2}}</strong> w/{{b.bookmaker}}</small> - {{b.bet_id}} - {{b.created}} - {{b.updated}}</p>
+                        <p>
+                            <small>{{b.event_type}} > {{b.event}} - {{b.created | date:'medium'}}</small><br>
+                            {{b.fixture}}<br>
+                            <small><strong>{{b.bet_type}}, {{b.selection}} - {{b.stake | currency: "&pound;"}}</strong> @ <strong>{{b.price | number:2}}</strong> w/{{b.bookmaker}}</small> 
+                        </p>
                         <div class="btn-group btn-group-xs right" role="group" aria-label="Extra-small button group">
                             <button type="button" class="btn btn-default" ng-click="updateOutcome(b, 'win')">
                                 <span class="glyphicon glyphicon-ok success" aria-hidden="true"></span>
@@ -129,14 +131,24 @@
                             </div>
                             <div role="tabpanel" class="tab-pane fade" id="record">
                                 <div class="breather">
-                                    <div class="block unresolved" ng-repeat="b in bets | filter: { outcome: '!open' } | orderBy: 'created_at'">
-                                        <p>{{b.bet_id}} - {{b.created}} - {{b.updated}} - {{b.fixture}} - {{b.stake | currency: "&pound;"}} - {{b.price | number:2}} - {{b.outcome}} - <span ng-class="{'text-success': b.outcome == 'win', 'text-danger': b.outcome == 'lose'}"><strong>{{b.profit | currency: "&pound;"}}</strong></span> - {{b.return | currency: "&pound;"}}</p>
+                                    <div class="block unresolved" ng-repeat="b in bets | filter: { outcome: '!open' } | orderBy: 'updated':true">
+                                        <a href="#" class="delete" ng-click="deleteBet(b.bet_id, $event)"><span class="glyphicon glyphicon-trash right small" aria-hidden="true"></span></a>
+                                        <p>
+                                            {{b.created | date:'medium'}} - 
+                                            {{b.updated | date:'medium'}}<br> 
+                                            {{b.fixture}} - 
+                                            {{b.stake | currency: "&pound;"}} - 
+                                            {{b.price | number:2}} - 
+                                            {{b.outcome}} - 
+                                            <span ng-class="{'text-success': b.outcome == 'win', 'text-danger': b.outcome == 'lose'}"><strong>{{b.profit | currency: "&pound;"}}</strong></span> - 
+                                            {{b.return | currency: "&pound;"}}
+                                        </p>
                                     </div>
                                 </div>
                             </div>
                             <div role="tabpanel" class="tab-pane fade" id="chart">
                                 <div class="breather">
-                                    <div id="chart"></div>
+                                    <div id="chart" data-points="[]"></div>
                                 </div>
                             </div>
                             <div role="tabpanel" class="tab-pane fade" id="settings">...</div>
