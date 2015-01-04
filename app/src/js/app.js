@@ -42,6 +42,8 @@
         
         // form values
         $scope.betId = '',
+        $scope.created = 0,
+        $scope.updated = 0,
         $scope.userId = USER_ID,
         $scope.listId = '1',
         $scope.listName = 'default',
@@ -122,6 +124,8 @@
         $scope.submit = function() {
             var bet = {
                 bet_id: uniqueToken(),
+                created: Date.now(),
+                updated: Date.now(),
                 user_id: $scope.userId,
                 list_id: parseFloat($scope.listId),
                 list_name: $scope.listName,
@@ -148,8 +152,9 @@
 
         $scope.updateOutcome = function (bet, outcome) {
             bet.outcome = outcome;
-            bet.profit = $scope.calcProfit(bet); console.log(bet.profit);
-            bet.return = $scope.calcReturn(bet) ; console.log(bet.return);
+            bet.profit = $scope.calcProfit(bet);
+            bet.return = $scope.calcReturn(bet);
+            bet.updated = Date.now();
 
             $scope.updateBet(bet);
         }

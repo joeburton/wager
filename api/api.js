@@ -26,6 +26,8 @@ var User = new Schema({
 var Bet = new Schema({
     "bet_id": String,
     "user_id": String,
+    "created": Number,
+    "updated": Number,
     "list_id": Number,
     "list_name": String,
     "tags": String,
@@ -193,6 +195,8 @@ server.post('/api/bet', function (req, res, next) {
     
     var betData = {
         bet_id: req.params.bet_id,
+        created: req.params.created,
+        updated: req.params.updated,
         user_id: req.params.user_id,
         list_id: req.params.list_id,
         list_name: req.params.list_name,
@@ -227,6 +231,8 @@ server.post('/api/bet', function (req, res, next) {
 server.put('/api/bet/:id', function (req, res, next) {
     var betData = {
         bet_id: req.params.bet_id,
+        created: req.params.created,
+        updated: req.params.updated,
         user_id: req.params.user_id,
         list_id: req.params.list_id,
         list_name: req.params.list_name,
