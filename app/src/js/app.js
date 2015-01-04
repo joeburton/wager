@@ -39,6 +39,7 @@
     app.controller('betController', ['$scope', 'dataFactory', function ($scope, dataFactory) {
         $scope.status;
         $scope.bets;
+        $scope.dataPoints;
         
         // form values
         $scope.betId = '',
@@ -66,6 +67,8 @@
             dataFactory.getBets()
                 .success(function (bets) {
                     $scope.bets = bets;
+                    $scope.dataPoints = $scope.getDataPoints($scope.bets);
+                    createChart($scope.dataPoints);
                 })
                 .error(function (error) {
                     $scope.status = 'Unable to load data: ' + error.message;
@@ -188,6 +191,66 @@
             var rtn = bet.stake + bet.profit;
             return rtn; 
         }
+
+        $scope.getDataPoints = function (bets) {
+            // sort bets
+            bets.sort($scope.compare);
+
+            var cumulativeSum = 0,
+                dataArr = [];
+
+            for (var i = 0; i < bets.length; i++) {
+                var pointArr = [];
+                cumulativeSum += bets[i].profit;
+
+                pointArr.push(bets[i].updated);
+                pointArr.push(cumulativeSum);
+                dataArr.push(pointArr);
+            }
+
+            return dataArr;
+        }
+
+        $scope.compare = function (a,b) {
+            if (a.updated < b.updated) {
+                return -1;
+            }
+            if (a.updated > b.updated) {
+                return 1;
+            }
+            return 0;
+        }
+
+        var createChart = function (dataPoints) {
+            window.chart = new Highcharts.StockChart({
+                chart: {
+                    renderTo: 'chart',
+                    width: 900
+                },
+
+                credits: {
+                    enabled: false
+                },
+
+                rangeSelector: {
+                    selected: 1
+                },
+
+                title: {
+                    text: 'Profit & Loss'
+                },
+
+                series: [{
+                    name : 'Data',
+                    data : dataPoints,
+
+                    tooltip: {
+                        valueDecimals: 2
+                    }
+                }]
+            });
+        }
+
     }]);
 
 })();
