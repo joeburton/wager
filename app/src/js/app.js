@@ -224,9 +224,9 @@
         }
 
         var createChart = function (dataPoints) {
-            //console.log($('.highcharts-container'));
             window.chart = new Highcharts.StockChart({
                 chart: {
+                    type: 'spline',
                     renderTo: $('.highcharts-container')[0],
                     width: 900
                 },
