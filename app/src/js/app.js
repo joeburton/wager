@@ -80,6 +80,7 @@
 
             dataFactory.deleteBet(id)
             .success(function () {
+                getBets();
                 $scope.status = 'Deleted Bet! Updating UI';
                 for (var i = 0; i < $scope.bets.length; i++) {
                     var bet = $scope.bets[i];
@@ -99,8 +100,8 @@
                 .success(function () {
                     $scope.status = 'Created Bet! Update UI.';
                     $scope.bets.push(bet);
-                }).
-                error(function(error) {
+                })
+                .error(function(error) {
                     $scope.status = 'Unable to create bet: ' + error.message;
                 });
         };
@@ -116,12 +117,13 @@
             }
 
             dataFactory.updateBet(bet)
-              .success(function () {
-                  $scope.status = 'Updated bet! Update UI';
-              })
-              .error(function (error) {
-                  $scope.status = 'Unable to update bet: ' + error.message;
-              });
+                .success(function () {
+                    getBets();
+                    $scope.status = 'Updated bet! Update UI';
+                })
+                .error(function (error) {
+                    $scope.status = 'Unable to update bet: ' + error.message;
+                });
         };
 
         $scope.submit = function() {
@@ -175,7 +177,7 @@
 
             } else if (bet.outcome === 'win') {
                 console.log('win');
-                profit = bet.stake * bet.price;
+                profit = bet.stake * (bet.price - 1);
             
             } else if (bet.outcome === 'lose') {
                 console.log('lose');
@@ -222,9 +224,10 @@
         }
 
         var createChart = function (dataPoints) {
+            //console.log($('.highcharts-container'));
             window.chart = new Highcharts.StockChart({
                 chart: {
-                    renderTo: 'chart',
+                    renderTo: $('.highcharts-container')[0],
                     width: 900
                 },
 
@@ -243,6 +246,11 @@
                 series: [{
                     name : 'Data',
                     data : dataPoints,
+
+                    marker : {
+                        enabled : true,
+                        radius : 3
+                    },
 
                     tooltip: {
                         valueDecimals: 2
