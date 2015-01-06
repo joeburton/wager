@@ -19,9 +19,9 @@
                     <div class="block unresolved" ng-repeat="b in bets | filter: { outcome: 'open'} | orderBy: 'created'">
                         <a href="#" class="delete" ng-click="deleteBet(b.bet_id, $event)"><span class="glyphicon glyphicon-trash right small" aria-hidden="true"></span></a>
                         <p>
-                            <small>{{b.event_type}} > {{b.event}} - {{b.created | date:'medium'}}</small><br>
+                            <small>{{b.event_type}} > {{b.event}} - {{b.created | date:'dd/MM/yy'}}</small><br>
                             {{b.fixture}}<br>
-                            <small><strong>{{b.bet_type}}, {{b.selection}} - {{b.stake | currency: "&pound;"}}</strong> @ <strong>{{b.price | number:2}}</strong> w/{{b.bookmaker}}</small> 
+                            <small>{{b.bet_type}}, {{b.selection}} - {{b.stake | currency: "&pound;"}} @ {{b.price | number:2}} w/{{b.bookmaker}}</small> 
                         </p>
                         <div class="btn-group btn-group-xs right" role="group" aria-label="Extra-small button group">
                             <button type="button" class="btn btn-default" ng-click="updateOutcome(b, 'win')">
@@ -61,7 +61,7 @@
                         <div class="tab-content">
                             <div role="tabpanel" class="tab-pane fade in active" id="new">
                                 <div class="breather">
-                                    <div class="alert alert-warning" role="alert" ng-if="status">{{status}}</div><br>
+                                    <div class="alert alert-warning" role="alert" ng-if="status">{{status}}</div>
                                     
                                     <form class="new-bet" ng-submit="submit()">
                                         <div class="row">
@@ -126,17 +126,16 @@
                             </div>
                             <div role="tabpanel" class="tab-pane fade" id="record">
                                 <div class="breather">
-                                    <div class="block unresolved" ng-repeat="b in bets | filter: { outcome: '!open' } | orderBy: 'updated':true">
+                                    <div class="alert alert-warning" role="alert" ng-if="status">{{status}}</div>
+
+                                    <div class="block resolved" 
+                                    ng-repeat="b in bets | filter: { outcome: '!open' } | orderBy: 'updated':true" 
+                                    ng-class="{'success': b.outcome == 'win', 'danger': b.outcome == 'lose'}">
                                         <a href="#" class="delete" ng-click="deleteBet(b.bet_id, $event)"><span class="glyphicon glyphicon-trash right small" aria-hidden="true"></span></a>
                                         <p>
-                                            {{b.created | date:'medium'}} - 
-                                            {{b.updated | date:'medium'}}<br> 
-                                            {{b.fixture}} - 
-                                            {{b.stake | currency: "&pound;"}} - 
-                                            {{b.price | number:2}} - 
-                                            {{b.outcome}} - 
-                                            <span ng-class="{'text-success': b.outcome == 'win', 'text-danger': b.outcome == 'lose'}"><strong>{{b.profit | currency: "&pound;"}}</strong></span> - 
-                                            {{b.return | currency: "&pound;"}}
+                                            <small>{{b.created | date:'dd/MM/yy'}} - {{b.event_type}} > {{b.event}}</small><br>
+                                            {{b.fixture}} - {{b.bet_type}} - {{b.selection}} - {{b.stake | currency: "&pound;"}} @ {{b.price | number:2}} - 
+                                            <span ng-class="{'text-success': b.outcome == 'win', 'text-danger': b.outcome == 'lose'}"><strong>{{b.profit | currency: "&pound;"}}</strong></span>
                                         </p>
                                     </div>
                                 </div>

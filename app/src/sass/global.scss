@@ -14,7 +14,7 @@ $brand-danger:  #d9534f;
 
 
 /*bootstrap overrides*/
-.nav-tabs>li>a, {
+.nav-tabs>li>a {
     border-radius: 0;
     border-top: 1px solid #fff;
 }
@@ -60,7 +60,7 @@ $brand-danger:  #d9534f;
 .glyphicon.danger {
     color: $brand-danger;
 }
-.block.unresolved {
+.block {
     font-size: 16px;
     padding: 20px;
     border-bottom: 1px solid #ddd;
@@ -80,3 +80,22 @@ $brand-danger:  #d9534f;
         float: right;
     }
 }
+.block.resolved {
+    padding: 10px 20px;
+
+    &.danger {
+        border-left: 3px solid $brand-danger;
+    }
+    &.success {
+        border-left: 3px solid $brand-success;
+    }
+}
+
+.delete {
+    .glyphicon-trash {
+        padding-left: 20px;
+    }
+}
+
+
+
