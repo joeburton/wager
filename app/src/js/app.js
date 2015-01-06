@@ -246,6 +246,15 @@
                     text: 'Profit & Loss'
                 },
 
+                xAxis: {        
+                    type: 'datetime',
+                    labels: {
+                        formatter: function() {
+                            return Highcharts.dateFormat('%e %b', this.value);
+                        }
+                    }
+                },
+
                 series: [{
                     name : 'Data',
                     data : dataPoints,
