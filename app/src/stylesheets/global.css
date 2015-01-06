@@ -96,8 +96,12 @@
 .block.resolved.success {
   border-left: 3px solid #5cb85c;
 }
+/* line 92, ../sass/global.scss */
+.block.resolved.default {
+  border-left: 3px solid #777777;
+}
 
-/* line 95, ../sass/global.scss */
+/* line 98, ../sass/global.scss */
 .delete .glyphicon-trash {
   padding-left: 20px;
 }

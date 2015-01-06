@@ -61,7 +61,7 @@
                         <div class="tab-content">
                             <div role="tabpanel" class="tab-pane fade in active" id="new">
                                 <div class="breather">
-                                    <div class="alert alert-warning" role="alert" ng-if="status">{{status}}</div>
+                                    <!-- <div class="alert alert-warning" role="alert" ng-if="status">{{status}}</div> -->
                                     
                                     <form class="new-bet" ng-submit="submit()">
                                         <div class="row">
@@ -126,11 +126,11 @@
                             </div>
                             <div role="tabpanel" class="tab-pane fade" id="record">
                                 <div class="breather">
-                                    <div class="alert alert-warning" role="alert" ng-if="status">{{status}}</div>
+                                    <!--<div class="alert alert-warning" role="alert" ng-if="status">{{status}}</div>-->
 
                                     <div class="block resolved" 
                                     ng-repeat="b in bets | filter: { outcome: '!open' } | orderBy: 'updated':true" 
-                                    ng-class="{'success': b.outcome == 'win', 'danger': b.outcome == 'lose'}">
+                                    ng-class="{'success': b.outcome == 'win', 'danger': b.outcome == 'lose', 'default': b.outcome == 'void'}">
                                         <a href="#" class="delete" ng-click="deleteBet(b.bet_id, $event)"><span class="glyphicon glyphicon-trash right small" aria-hidden="true"></span></a>
                                         <p>
                                             <small>{{b.created | date:'dd/MM/yy'}} - {{b.event_type}} > {{b.event}}</small><br>

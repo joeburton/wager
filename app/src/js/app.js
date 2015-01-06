@@ -231,8 +231,10 @@
                 chart: {
                     type: 'spline',
                     renderTo: $('.highcharts-container')[0],
-                    width: 900
+                    width: 700
                 },
+
+                colors: ['#977BB5'],
 
                 credits: {
                     enabled: false
@@ -255,13 +257,26 @@
                     }
                 },
 
+                yAxis: {
+                    plotLines : [{
+                        value : 5,
+                        color : '#D19F99',
+                        dashStyle : 'solid',
+                        width : 1
+                    }]
+                },
+
+                tooltip: {
+                    valuePrefix: '£'
+                },
+
                 series: [{
                     name : 'Data',
                     data : dataPoints,
 
                     marker : {
                         enabled : true,
-                        radius : 3
+                        radius : 4
                     },
 
                     tooltip: {

@@ -89,6 +89,9 @@ $brand-danger:  #d9534f;
     &.success {
         border-left: 3px solid $brand-success;
     }
+    &.default {
+        border-left: 3px solid $gray-light;
+    }
 }
 
 .delete {
