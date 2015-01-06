@@ -1,7 +1,7 @@
 (function () {
     var app = angular.module('myApp', []);
 
-    var USER_ID = "54982aea39acde9ababb3560";
+    var USER_ID = "54abee6c3b123a0139c47d61";
 
     // use to generate unique bet id
     var uniqueToken = function generateQuickGuid() {
@@ -202,12 +202,15 @@
                 dataArr = [];
 
             for (var i = 0; i < bets.length; i++) {
-                var pointArr = [];
-                cumulativeSum += bets[i].profit;
+                // only create data points for resolved bets
+                if (bets[i].outcome && bets[i].outcome !== 'open') {
+                    var pointArr = [];
+                    cumulativeSum += bets[i].profit;
 
-                pointArr.push(bets[i].updated);
-                pointArr.push(cumulativeSum);
-                dataArr.push(pointArr);
+                    pointArr.push(bets[i].updated);
+                    pointArr.push(cumulativeSum);
+                    dataArr.push(pointArr);
+                }
             }
 
             return dataArr;
